@@ -1,41 +1,57 @@
 #include<stdio.h>
-void frequency(int *p,int b[])
+void frequency(int a[],int n)
 {
-	int i,j,n,count=0;
-	b[i]=-1;
-	for(i=0;i<n;i++)
+	for(int i=0;i<n;i++)
+	{
+		if(a[i]>0)
 		{
-			count=1;
-			for(j=i+1;j<n;j++)
+			int count=1;
+			for(int j=i+1;j<n;j++)
 			{
-				if(*(p+i)==*(p+j))
+				if(a[i]==a[j])
 				{
 					count++;
-					b[j]=0;
+					a[j]=-1;
 				}
 			}
-			if(b[i]!=0)
-				b[i]=count;
+			printf("%d frequency is %d\n",a[i],count);
 		}
-		printf("Count frequency of element in an array: \n");
-		for(i=0;i<n;i++)
+	}
+}
+void frequency1(int *ptr,int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		if(*(ptr+i)>0)
 		{
-			if(b[i]!=0)
-				printf("frequency of %d: %d times\n",*(p+i),b[i]);
+			int count=1;
+			for(int j=i+1;j<n;j++)
+			{
+				if(*(ptr+i)==*(ptr+j))
+				{
+					count++;
+					*(ptr+j)=-1;
+				}
+			}
+			printf("%d Frequency is %d\n",*(ptr+i),count);
 		}
+	}
 }
 int main()
 {
-	int a[10],b[10],i,j,n,*p;
-	p=a;
-	void (*fp)(int a[],int b[])=frequency;
-	printf("Enter size of an array: ");
+	int a[10],n;
+	printf("Enter no of Elements\n");
 	scanf("%d",&n);
-	for(i=0;i<n;i++)
+	printf("Enter the elements of Array\n");
+	for(int i=0;i<n;i++)
 	{
-		scanf("%d",&a[i]);	
+		scanf("%d",&a[i]);
 	}
-	
-	fp(p,b);
+	void (*fp)(int a[],int n)=frequency;
+	fp(a,n);
+	int *ptr;
+	ptr=a;
+	void (*fp1)(int *ptr,int n)=frequency1;
+	fp1(ptr,n);
 	return 0;
 }
