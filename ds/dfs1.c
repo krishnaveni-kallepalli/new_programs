@@ -11,7 +11,6 @@ int pop();
 void dfs();
  void main()
 {
-clrscr();
 printf("\n Enter the number of vertices: ");
  scanf("%d",&n);
 for(i=1;i<=n;i++)
@@ -31,7 +30,6 @@ scanf("%d",&st);
 push(st);	/* PUSH the starting vertex into the STACK */ 
 printf("\n DFS for Given graph is");
 dfs();
-getch();
 }
  
 void dfs()
